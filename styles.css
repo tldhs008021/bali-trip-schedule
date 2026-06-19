@@ -84,9 +84,10 @@ main {
   position: sticky;
   top: 0;
   z-index: 10;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: flex;
   gap: 0.45rem;
+  overflow-x: auto;
+  scrollbar-width: none;
   margin: -1.7rem 0 1rem;
   padding: 0.5rem;
   border: 1px solid rgba(255, 255, 255, 0.65);
@@ -96,7 +97,13 @@ main {
   backdrop-filter: blur(16px);
 }
 
+.quick-nav::-webkit-scrollbar {
+  display: none;
+}
+
 .quick-nav a {
+  flex: 0 0 auto;
+  min-width: 4.65rem;
   min-height: 2.55rem;
   display: grid;
   place-items: center;
@@ -165,6 +172,73 @@ main {
   color: #41270a;
   font-size: 0.72rem;
   vertical-align: 0.15rem;
+}
+
+.day-tour {
+  padding: 0 0 0.15rem;
+}
+
+.day__summary {
+  display: block;
+  margin-bottom: 0.65rem;
+  padding: 0 0.85rem 0.75rem;
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.09), rgba(241, 184, 75, 0.12));
+  cursor: pointer;
+  list-style: none;
+}
+
+.day__summary::-webkit-details-marker {
+  display: none;
+}
+
+.day__summary .day__title {
+  padding-inline: 0;
+}
+
+.summary-hint {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0 0.7rem;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--teal-dark);
+  font-size: 0.8rem;
+  font-weight: 900;
+  box-shadow: 0 8px 24px rgba(31, 48, 42, 0.08);
+}
+
+.summary-hint::after {
+  content: "↓";
+  margin-left: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.day-tour[open] .summary-hint::after {
+  content: "↑";
+}
+
+.tour-note {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0 0 0.65rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px dashed rgba(15, 118, 110, 0.35);
+  border-radius: 0.75rem;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.tour-note strong {
+  color: var(--teal-dark);
+  font-size: 0.88rem;
+}
+
+.tour-note span {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.45;
 }
 
 .schedule-card {
@@ -282,6 +356,7 @@ main {
   }
 
   .quick-nav a {
+    min-width: 4.3rem;
     font-size: 0.74rem;
   }
 

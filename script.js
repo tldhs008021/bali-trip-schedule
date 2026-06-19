@@ -13,6 +13,16 @@ if (todaySection) {
   todaySection.classList.add("is-today");
 }
 
+const openHashDetails = () => {
+  const details = document.querySelector(`${window.location.hash}.day-tour`);
+  if (details) {
+    details.open = true;
+  }
+};
+
+window.addEventListener("hashchange", openHashDetails);
+openHashDetails();
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
